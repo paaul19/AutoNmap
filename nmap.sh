@@ -12,7 +12,7 @@ TEMP_FILE=$(mktemp)
 echo -e "\e[1;36m[*] Iniciando escaneo de puertos abiertos en $IP...\e[0m"
 
 # Primer escaneo
-nmap -p- --open -sS --min-rate 5000 -vvv -n "$IP" -oG "$TEMP_FILE" > /dev/null
+nmap --open -sS --min-rate 5000 -vvv -n "$IP" -oG "$TEMP_FILE" > /dev/null
 
 # Extraer puertos abiertos
 OPEN_PORTS=$(grep -oP '\d+/open' "$TEMP_FILE" | cut -d'/' -f1 | tr '\n' ',' | sed 's/,$//')
